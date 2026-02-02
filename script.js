@@ -9,3 +9,21 @@ function getComputerChoice() {
   }
   return computerChoice;
 }
+
+function getHumanChoice() {
+  while (true) {
+    let humanChoice = prompt("Choice(Rock/Paper/Scissors): ").toLowerCase();
+    if (
+      humanChoice !== "rock" &&
+      humanChoice !== "paper" &&
+      humanChoice !== "scissors"
+    ) {
+      console.log("Invalid choice!");
+    } else {
+      console.log(humanChoice);
+      return;
+    }
+  }
+}
+
+getHumanChoice();
