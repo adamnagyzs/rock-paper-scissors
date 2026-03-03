@@ -76,4 +76,24 @@ function playGame() {
   console.log("Press f5 to restart the game");
 }
 
-playGame();
+const playGameButton = document.getElementById("playGameButton");
+const buttonsContainer = document.getElementById("choiceButtons");
+
+playGameButton.addEventListener("click", () => {
+  const choiceButtonsSpan = document.createElement("span");
+
+  const rockButton = document.createElement("button");
+  rockButton.id = "rockButton";
+  rockButton.textContent = "Rock";
+
+  const paperButton = document.createElement("button");
+  paperButton.id = "paperButton";
+  paperButton.textContent = "Paper";
+
+  const scissorsButton = document.createElement("button");
+  scissorsButton.id = "scissorsButton";
+  scissorsButton.textContent = "Scissors";
+
+  choiceButtonsSpan.append(rockButton, paperButton, scissorsButton);
+  buttonsContainer.appendChild(choiceButtonsSpan);
+});
