@@ -1,3 +1,3 @@
 # rock-paper-scissors
 
-Small JS practice project (no arrays, no gui yet)
+Small JS practice project (ai was used for css)
