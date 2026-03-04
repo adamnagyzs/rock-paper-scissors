@@ -55,32 +55,29 @@ function playRound(humanChoice, computerChoice) {
   if (gameOver) {
     return;
   }
-  console.log(
-    `Your choice: ${humanChoice} \nComputer's choice: ${computerChoice}`,
-  );
+  const outputScript = document.getElementById("outputScript");
+  outputScript.textContent = `Your choice: ${humanChoice} \nComputer's choice: ${computerChoice}\n`;
   if (humanChoice === computerChoice) {
-    console.log("Tie!");
+    outputScript.textContent += "Tie!\n";
   } else if (
     (humanChoice === "rock" && computerChoice === "scissors") ||
     (humanChoice === "paper" && computerChoice === "rock") ||
     (humanChoice === "scissors" && computerChoice === "paper")
   ) {
-    console.log("You won the round!");
+    outputScript.textContent += "You won the round!\n";
     humanScore += 1;
   } else {
-    console.log("Computer won the round!");
+    outputScript.textContent += "Computer won the round!\n";
     computerScore += 1;
   }
-
-  console.log(`Your score: ${humanScore}`);
-  console.log(`Computer's score: ${computerScore}`);
+  outputScript.textContent += `Your score: ${humanScore}\nComputer's score: ${computerScore}\n`;
 
   if (humanScore === 3) {
-    console.log("Congrats, you won!");
+    outputScript.textContent += "Congrats, you won!\n";
     gameOver = true;
   }
   if (computerScore === 3) {
-    console.log("You lost!");
+    outputScript.textContent += "You lost! \n";
     gameOver = true;
   }
   if (gameOver) {
@@ -91,7 +88,7 @@ function playRound(humanChoice, computerChoice) {
 
     newGameContainer.appendChild(newGameButton);
     newGameButton.addEventListener("click", (e) => {
-      console.clear();
+      outputScript.textContent = "";
       humanScore = 0;
       computerScore = 0;
       gameOver = false;

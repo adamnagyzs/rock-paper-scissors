@@ -1,14 +1,104 @@
-#buttonsContainer {
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
+/* Alap reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-#newGameContainer {
-  margin-top: 40px;
+body {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 60px;
+}
+
+#buttonsContainer {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  text-align: center;
+  width: 400px;
+}
+
+h1 {
+  margin-bottom: 40px;
+  font-size: 28px;
+  text-align: center;
+}
+
+button {
+  padding: 12px 25px;
+  border-radius: 30px;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+#playGameButton {
+  background: linear-gradient(45deg, #00c6ff, #0072ff);
+  color: white;
+}
+
+#playGameButton:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0, 114, 255, 0.4);
 }
 
 #choiceButtonsSpan {
   display: flex;
-  gap: 10px;
+  justify-content: center;
+  gap: 15px;
+  margin: 25px 0;
+}
+
+#rockButton {
+  background: #ff6b6b;
+  color: white;
+}
+
+#paperButton {
+  background: #feca57;
+  color: black;
+}
+
+#scissorsButton {
+  background: #1dd1a1;
+  color: white;
+}
+
+#rockButton:hover,
+#paperButton:hover,
+#scissorsButton:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+}
+
+#outputScript {
+  margin-top: 20px;
+  padding: 15px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  min-height: 120px;
+  white-space: pre-line;
+  font-size: 15px;
+  text-align: left;
+}
+
+#newGameButton {
+  margin-top: 20px;
+  background: linear-gradient(45deg, #ff416c, #ff4b2b);
+  color: white;
+}
+
+#newGameButton:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(255, 75, 43, 0.4);
 }
