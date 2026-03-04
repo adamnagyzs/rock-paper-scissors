@@ -77,11 +77,14 @@ function playGame() {
 }
 
 const playGameButton = document.getElementById("playGameButton");
-const buttonsContainer = document.getElementById("choiceButtons");
+const choiceButtons = document.getElementById("choiceButtons");
 
 playGameButton.addEventListener("click", () => {
+  if (document.getElementById("choiceButtonsSpan")) {
+    return;
+  }
   const choiceButtonsSpan = document.createElement("span");
-
+  choiceButtonsSpan.id = "choiceButtonsSpan";
   const rockButton = document.createElement("button");
   rockButton.id = "rockButton";
   rockButton.textContent = "Rock";
@@ -95,5 +98,5 @@ playGameButton.addEventListener("click", () => {
   scissorsButton.textContent = "Scissors";
 
   choiceButtonsSpan.append(rockButton, paperButton, scissorsButton);
-  buttonsContainer.appendChild(choiceButtonsSpan);
+  choiceButtons.appendChild(choiceButtonsSpan);
 });
