@@ -1,3 +1,40 @@
+const playGameButton = document.getElementById("playGameButton");
+const choiceButtons = document.getElementById("choiceButtons");
+
+playGameButton.addEventListener("click", () => {
+  if (document.getElementById("choiceButtonsSpan")) {
+    return;
+  }
+  const choiceButtonsSpan = document.createElement("span");
+  choiceButtonsSpan.id = "choiceButtonsSpan";
+  const rockButton = document.createElement("button");
+  rockButton.id = "rockButton";
+  rockButton.textContent = "Rock";
+  rockButton.addEventListener("click", () => {
+    humanChoice = "rock";
+    playRound(humanChoice, getComputerChoice());
+  });
+
+  const paperButton = document.createElement("button");
+  paperButton.id = "paperButton";
+  paperButton.textContent = "Paper";
+  paperButton.addEventListener("click", () => {
+    humanChoice = "paper";
+    playRound(humanChoice, getComputerChoice());
+  });
+
+  const scissorsButton = document.createElement("button");
+  scissorsButton.id = "scissorsButton";
+  scissorsButton.textContent = "Scissors";
+  scissorsButton.addEventListener("click", () => {
+    humanChoice = "scissors";
+    playRound(humanChoice, getComputerChoice());
+  });
+
+  choiceButtonsSpan.append(rockButton, paperButton, scissorsButton);
+  choiceButtons.appendChild(choiceButtonsSpan);
+});
+
 function getComputerChoice() {
   let computerChoice = Math.random();
   if (computerChoice <= 1 / 3) {
@@ -10,30 +47,14 @@ function getComputerChoice() {
   return computerChoice;
 }
 
-function getHumanChoice() {
-  while (true) {
-    let humanChoice = prompt(
-      "Choice(Rock/Paper/Scissors/Exit): ",
-    ).toLowerCase();
-    if (humanChoice === "exit") {
-      return null;
-    }
-    if (
-      humanChoice !== "rock" &&
-      humanChoice !== "paper" &&
-      humanChoice !== "scissors"
-    ) {
-      console.log("Invalid choice!");
-    } else {
-      return humanChoice;
-    }
-  }
-}
-
 let humanScore = 0;
 let computerScore = 0;
+let gameOver = false;
 
 function playRound(humanChoice, computerChoice) {
+  if (gameOver) {
+    return;
+  }
   console.log(
     `Your choice: ${humanChoice} \nComputer's choice: ${computerChoice}`,
   );
@@ -53,50 +74,28 @@ function playRound(humanChoice, computerChoice) {
 
   console.log(`Your score: ${humanScore}`);
   console.log(`Computer's score: ${computerScore}`);
+
+  if (humanScore === 3) {
+    console.log("Congrats, you won!");
+    gameOver = true;
+  }
+  if (computerScore === 3) {
+    console.log("You lost!");
+    gameOver = true;
+  }
+  if (gameOver) {
+    newGameContainer = document.getElementById("newGameContainer");
+    newGameButton = document.createElement("button");
+    newGameButton.id = "newGameButton";
+    newGameButton.textContent = "New Game";
+
+    newGameContainer.appendChild(newGameButton);
+    newGameButton.addEventListener("click", (e) => {
+      console.clear();
+      humanScore = 0;
+      computerScore = 0;
+      gameOver = false;
+      e.target.remove();
+    });
+  }
 }
-
-function playGame() {
-  while (computerScore !== 3 && humanScore !== 3) {
-    let humanSelection = getHumanChoice();
-
-    if (humanSelection === null) {
-      console.log("Game exited.");
-      return;
-    }
-
-    let computerSelection = getComputerChoice();
-    playRound(humanSelection, computerSelection);
-  }
-
-  if (computerScore > humanScore) {
-    console.log("Computer won the game!");
-  } else if (humanScore > computerScore) {
-    console.log("You won the game!");
-  }
-  console.log("Press f5 to restart the game");
-}
-
-const playGameButton = document.getElementById("playGameButton");
-const choiceButtons = document.getElementById("choiceButtons");
-
-playGameButton.addEventListener("click", () => {
-  if (document.getElementById("choiceButtonsSpan")) {
-    return;
-  }
-  const choiceButtonsSpan = document.createElement("span");
-  choiceButtonsSpan.id = "choiceButtonsSpan";
-  const rockButton = document.createElement("button");
-  rockButton.id = "rockButton";
-  rockButton.textContent = "Rock";
-
-  const paperButton = document.createElement("button");
-  paperButton.id = "paperButton";
-  paperButton.textContent = "Paper";
-
-  const scissorsButton = document.createElement("button");
-  scissorsButton.id = "scissorsButton";
-  scissorsButton.textContent = "Scissors";
-
-  choiceButtonsSpan.append(rockButton, paperButton, scissorsButton);
-  choiceButtons.appendChild(choiceButtonsSpan);
-});

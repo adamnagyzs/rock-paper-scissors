@@ -1,0 +1,14 @@
+#buttonsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+#newGameContainer {
+  margin-top: 40px;
+}
+
+#choiceButtonsSpan {
+  display: flex;
+  gap: 10px;
+}
